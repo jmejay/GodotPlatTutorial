@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://cwayehr2fq3ja"]
+
+[ext_resource type="PackedScene" uid="uid://duii0ug71ngqy" path="res://block.tscn" id="1_n5knd"]
+[ext_resource type="PackedScene" uid="uid://bru80sx16j64c" path="res://alex.tscn" id="2_0x5rm"]
+[ext_resource type="PackedScene" uid="uid://cvhuub4wc680d" path="res://coin.tscn" id="5_jatev"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c65q1"]
+albedo_color = Color(0.36972, 0.3476, 0.79, 1)
+metallic = 0.21
+roughness = 0.52
+
+[sub_resource type="BoxMesh" id="BoxMesh_bes8r"]
+material = SubResource("StandardMaterial3D_c65q1")
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_51xwo"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e0wss"]
+sky_top_color = Color(0.221, 0.388733, 0.85, 1)
+sky_horizon_color = Color(0.72, 0.5688, 0.6696, 1)
+sky_curve = 0.0891906
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.721569, 0.568627, 0.670588, 1)
+ground_curve = 0.0475683
+
+[sub_resource type="Sky" id="Sky_o765n"]
+sky_material = SubResource("ProceduralSkyMaterial_e0wss")
+
+[sub_resource type="Environment" id="Environment_ugem4"]
+background_mode = 2
+sky = SubResource("Sky_o765n")
+ambient_light_color = Color(0.977833, 0.833023, 0.733976, 1)
+ambient_light_sky_contribution = 0.24
+ssr_enabled = true
+ssao_enabled = true
+
+[node name="level1" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26482, 5.54372)
+
+[node name="floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
+mesh = SubResource("BoxMesh_bes8r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+shape = SubResource("BoxShape3D_51xwo")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.730329, 0.0847392, 0.677819, -0.683095, 0.0905987, 0.724688, 0, -0.992276, 0.124052, -1.82428, 3.62912, -0.974533)
+shadow_enabled = true
+
+[node name="blocks" type="Node3D" parent="."]
+
+[node name="block1" parent="blocks" instance=ExtResource("1_n5knd")]
+transform = Transform3D(1, 0, 0, 0, 0.855699, -0.517475, 0, 0.517475, 0.855699, 0, 1.65089, 0)
+
+[node name="block2" parent="blocks" instance=ExtResource("1_n5knd")]
+transform = Transform3D(0.805442, 0.579561, 0.123983, -0.592674, 0.787622, 0.168492, 0, -0.209192, 0.977875, 0, 3.50362, 0)
+
+[node name="block3" parent="blocks" instance=ExtResource("1_n5knd")]
+transform = Transform3D(0.713666, -0.362484, -0.599405, 0, 0.855699, -0.517475, 0.700486, 0.369304, 0.610683, 0, 5.70121, 0)
+
+[node name="block4" parent="blocks" instance=ExtResource("1_n5knd")]
+transform = Transform3D(0.574817, 0.560149, -0.596505, -0.592674, 0.787622, 0.168492, 0.564201, 0.256681, 0.784724, 0, 7.55395, 0)
+
+[node name="Alex" parent="." instance=ExtResource("2_0x5rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.124946, 1.57667, 2.22339)
+
+[node name="coin" parent="." instance=ExtResource("5_jatev")]
+transform = Transform3D(0.833847, 0, 0, 0, 0.833847, 0, 0, 0, 0.833847, 3.65183, 1.15784, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ugem4")

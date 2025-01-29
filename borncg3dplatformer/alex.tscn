@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bru80sx16j64c"]
+
+[ext_resource type="Script" path="res://alex.gd" id="1_vnjt4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ojd4"]
+albedo_color = Color(0.989536, 0.576766, 0.611904, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n5nge"]
+material = SubResource("StandardMaterial3D_0ojd4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0jwjd"]
+
+[node name="Alex" type="CharacterBody3D"]
+script = ExtResource("1_vnjt4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_n5nge")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_0jwjd")
