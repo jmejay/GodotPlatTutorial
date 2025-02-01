@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bru80sx16j64c"]
+[gd_scene load_steps=6 format=3 uid="uid://bru80sx16j64c"]
 
 [ext_resource type="Script" path="res://alex.gd" id="1_vnjt4"]
 
@@ -8,6 +8,8 @@ albedo_color = Color(0.989536, 0.576766, 0.611904, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_n5nge"]
 material = SubResource("StandardMaterial3D_0ojd4")
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_tvg6f"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_0jwjd"]
 
 [node name="Alex" type="CharacterBody3D"]
@@ -16,5 +18,20 @@ script = ExtResource("1_vnjt4")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_n5nge")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-2.35145e-08, -7.64639e-09, 0.537948, -0.537948, 0, -2.35145e-08, 0, -0.174929, -2.35145e-08, -2.33107e-08, 1.05879e-22, -0.533287)
+mesh = SubResource("CylinderMesh_tvg6f")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_0jwjd")
+
+[node name="camera_controller" type="Node3D" parent="."]
+top_level = true
+
+[node name="camera_target" type="Node3D" parent="camera_controller"]
+transform = Transform3D(1, 0, 0, 0, 0.922005, 0.387178, 0, -0.387178, 0.922005, 0, 1.61988, 2.47262)
+
+[node name="Camera3D" type="Camera3D" parent="camera_controller/camera_target"]
+current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
