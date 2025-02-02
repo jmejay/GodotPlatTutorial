@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvhuub4wc680d"]
+[gd_scene load_steps=7 format=3 uid="uid://cvhuub4wc680d"]
 
 [ext_resource type="Script" path="res://coin.gd" id="1_qa4ia"]
 [ext_resource type="ArrayMesh" uid="uid://278bikdw3834" path="res://Assets/Models/coin_new.res" id="2_un3pv"]
@@ -7,7 +7,45 @@
 height = 0.15
 radius = 0.3
 
+[sub_resource type="Animation" id="Animation_c653n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2116g"]
+resource_name = "bounce"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.569578, 0), Vector3(0, 0.369879, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5h33p"]
+_data = {
+"RESET": SubResource("Animation_c653n"),
+"bounce": SubResource("Animation_2116g")
+}
+
 [node name="coin" type="Area3D"]
+collision_layer = 4
 script = ExtResource("1_qa4ia")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -18,4 +56,10 @@ mesh = ExtResource("2_un3pv")
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CylinderShape3D_nuai0")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5h33p")
+}
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
