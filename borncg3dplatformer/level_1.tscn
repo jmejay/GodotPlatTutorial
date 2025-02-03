@@ -75,17 +75,21 @@ shape = SubResource("BoxShape3D_upkm3")
 
 [node name="coins" type="Node3D" parent="."]
 
-[node name="coin" parent="coins" instance=ExtResource("5_jatev")]
+[node name="coin" parent="coins" node_paths=PackedStringArray("hud") instance=ExtResource("5_jatev")]
 transform = Transform3D(0.833847, 0, 0, 0, 0.833847, 0, 0, 0, 0.833847, 3.65183, 1.15784, 0)
+hud = NodePath("../../HUD")
 
-[node name="coin2" parent="coins" instance=ExtResource("5_jatev")]
+[node name="coin2" parent="coins" node_paths=PackedStringArray("hud") instance=ExtResource("5_jatev")]
 transform = Transform3D(0.833847, 0, 0, 0, 0.833847, 0, 0, 0, 0.833847, 3.65183, 1.15784, -2)
+hud = NodePath("../../HUD")
 
-[node name="coin3" parent="coins" instance=ExtResource("5_jatev")]
+[node name="coin3" parent="coins" node_paths=PackedStringArray("hud") instance=ExtResource("5_jatev")]
 transform = Transform3D(0.833847, 0, 0, 0, 0.833847, 0, 0, 0, 0.833847, 3.65183, 1.15784, -4)
+hud = NodePath("../../HUD")
 
-[node name="coin4" parent="coins" instance=ExtResource("5_jatev")]
+[node name="coin4" parent="coins" node_paths=PackedStringArray("hud") instance=ExtResource("5_jatev")]
 transform = Transform3D(0.833847, 0, 0, 0, 0.833847, 0, 0, 0, 0.833847, -1.34817, 1.15784, -4)
+hud = NodePath("../../HUD")
 
 [node name="HUD" parent="." instance=ExtResource("5_d7h6f")]
 

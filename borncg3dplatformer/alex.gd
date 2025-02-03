@@ -9,6 +9,18 @@ var xform : Transform3D
 
 func _physics_process(delta: float) -> void:
 	
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	
+	#animations
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		$AnimationPlayer.play("jump")
+	elif is_on_floor() and input_dir != Vector2.ZERO:
+		$AnimationPlayer.play("run")
+	elif is_on_floor() and input_dir == Vector2.ZERO:
+		$AnimationPlayer.play("idle")
+	
 
 	# rotate the camera
 	if Input.is_action_just_pressed("cam_left"):
@@ -24,16 +36,12 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	
 	var direction = ($camera_controller.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if input_dir != Vector2(0,0):
-		$MeshInstance3D.rotation_degrees.y = $camera_controller.rotation_degrees.y - rad_to_deg(input_dir.angle()) - 90
+		$Armature.rotation_degrees.y = $camera_controller.rotation_degrees.y - rad_to_deg(input_dir.angle()) - 90
 	
 	#align to floor
 	if is_on_floor() and input_dir != Vector2(0,0):

@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvl7e5r88qb4p"]
+[gd_scene load_steps=5 format=3 uid="uid://bvl7e5r88qb4p"]
 
+[ext_resource type="Script" path="res://hud.gd" id="1_4u8sx"]
 [ext_resource type="Texture2D" uid="uid://ds8dirfpxl5tl" path="res://Assets/Images/hud_coin.png" id="1_y4rgg"]
 [ext_resource type="FontFile" uid="uid://buasfp1t7c2vx" path="res://Assets/Fonts/FrancoisOne-Regular.ttf" id="2_kw373"]
 
@@ -11,11 +12,12 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_4u8sx")
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = 28.0
 offset_top = 33.0
-offset_right = 398.0
+offset_right = 223.0
 offset_bottom = 119.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_yfob4")
 
@@ -35,3 +37,12 @@ offset_bottom = 104.0
 theme_override_fonts/font = ExtResource("2_kw373")
 theme_override_font_sizes/font_size = 35
 text = "x"
+
+[node name="coins_label" type="Label" parent="."]
+offset_left = 132.0
+offset_top = 39.0
+offset_right = 196.0
+offset_bottom = 112.0
+theme_override_fonts/font = ExtResource("2_kw373")
+theme_override_font_sizes/font_size = 51
+text = "##"
