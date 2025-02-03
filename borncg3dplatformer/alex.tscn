@@ -12,8 +12,8 @@ material = SubResource("StandardMaterial3D_0ojd4")
 [sub_resource type="CylinderMesh" id="CylinderMesh_tvg6f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_28wyt"]
-radius = 0.35
-height = 1.0
+radius = 0.4
+height = 1.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxps1"]
 resource_name = "plastic-yellow"
@@ -814,7 +814,7 @@ _data = {
 }
 
 [node name="Alex" type="CharacterBody3D"]
-collision_mask = 30
+collision_mask = 22
 script = ExtResource("1_vnjt4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -826,6 +826,7 @@ transform = Transform3D(-2.35145e-08, -7.64639e-09, 0.537948, -0.537948, 0, -2.3
 mesh = SubResource("CylinderMesh_tvg6f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.107813, 0)
 shape = SubResource("CapsuleShape3D_28wyt")
 
 [node name="camera_controller" type="Node3D" parent="."]
